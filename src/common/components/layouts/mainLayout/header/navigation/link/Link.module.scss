@@ -1,0 +1,11 @@
+.navigation-item-link {
+  @apply transition-colors ease-in-out;
+
+  &:hover {
+    color: theme('colors.primary');
+  }
+}
+
+.navigation-item-link-active {
+  color: theme('colors.primary');
+}

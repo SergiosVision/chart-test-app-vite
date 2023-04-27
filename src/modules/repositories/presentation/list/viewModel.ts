@@ -1,4 +1,4 @@
-import { makeObservable, observable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
 import { RepositoriesListModel } from '../../domain/models/RepositoriesListModel';
 import { GetRepositoriesListCase } from '../../domain/usecases/getRepositoriesList';
@@ -8,30 +8,33 @@ type UseCases = {
 };
 
 export class RepositoriesListViewModel {
-	public isLoading = false;
-	public list: RepositoriesListModel[] = [];
+	private _isLoading = false;
+	private _list: RepositoriesListModel[] = [];
 
 	constructor(private readonly useCases: UseCases) {
-		makeObservable(this, {
-			isLoading: observable,
-			list: observable
-		});
+		makeAutoObservable(this);
+	}
+
+	get list() {
+		return toJS(this._list);
+	}
+
+	get isLoading() {
+		return toJS(this._isLoading);
 	}
 
 	async getRepositoriesList(): Promise<void> {
-		runInAction(() => {
-			this.isLoading = true;
-		});
+		this._isLoading = true;
 
 		try {
 			const response = await this.useCases.getRepositoriesListCase.execute();
 
 			runInAction(() => {
-				this.list = response;
+				this._list = response;
 			});
 		} finally {
 			runInAction(() => {
-				this.isLoading = false;
+				this._isLoading = false;
 			});
 		}
 	}

@@ -1,4 +1,4 @@
-import { makeObservable, observable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
 import { ValueOrNull } from '@common/types/interfaces/common';
 
@@ -10,20 +10,23 @@ type UseCases = {
 };
 
 export class RepositoryDetailsViewModel {
-	public isLoading = false;
-	public data: ValueOrNull<RepositoryDetailsModel> = null;
+	private _isLoading = false;
+	private _data: ValueOrNull<RepositoryDetailsModel> = null;
 
 	constructor(private readonly useCases: UseCases) {
-		makeObservable(this, {
-			isLoading: observable,
-			data: observable
-		});
+		makeAutoObservable(this);
+	}
+
+	get data() {
+		return toJS(this._data);
+	}
+
+	get isLoading() {
+		return toJS(this._isLoading);
 	}
 
 	async getRepositoryDetails(repo: string, owner: string): Promise<void> {
-		runInAction(() => {
-			this.isLoading = true;
-		});
+		this._isLoading = true;
 
 		try {
 			const response = await this.useCases.getRepositoryDetailsCase.execute(
@@ -32,11 +35,11 @@ export class RepositoryDetailsViewModel {
 			);
 
 			runInAction(() => {
-				this.data = response;
+				this._data = response;
 			});
 		} finally {
 			runInAction(() => {
-				this.isLoading = false;
+				this._isLoading = false;
 			});
 		}
 	}

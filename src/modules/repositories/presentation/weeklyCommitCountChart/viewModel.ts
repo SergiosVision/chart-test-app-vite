@@ -1,4 +1,4 @@
-import { makeObservable, observable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
 import { WeeklyCommitCountModel } from '../../domain/models/WeeklyCommitCountModel';
 import { GetWeeklyCommitCountCase } from '../../domain/usecases/getWeeklyCommitCount';
@@ -8,20 +8,23 @@ type UseCases = {
 };
 
 export class WeeklyCommitCountChartViewModel {
-	public isLoading = false;
-	public data: WeeklyCommitCountModel = new WeeklyCommitCountModel({});
+	private _isLoading = false;
+	private _data: WeeklyCommitCountModel = new WeeklyCommitCountModel({});
 
 	constructor(private readonly useCases: UseCases) {
-		makeObservable(this, {
-			isLoading: observable,
-			data: observable
-		});
+		makeAutoObservable(this);
+	}
+
+	get data() {
+		return toJS(this._data);
+	}
+
+	get isLoading() {
+		return toJS(this._isLoading);
 	}
 
 	async getWeeklyCommitCount(owner: string, repo: string): Promise<void> {
-		runInAction(() => {
-			this.isLoading = true;
-		});
+		this._isLoading = true;
 
 		try {
 			const response = await this.useCases?.getWeeklyCommitCountCase.execute(
@@ -30,11 +33,11 @@ export class WeeklyCommitCountChartViewModel {
 			);
 
 			runInAction(() => {
-				this.data = response;
+				this._data = response;
 			});
 		} finally {
 			runInAction(() => {
-				this.isLoading = false;
+				this._isLoading = false;
 			});
 		}
 	}

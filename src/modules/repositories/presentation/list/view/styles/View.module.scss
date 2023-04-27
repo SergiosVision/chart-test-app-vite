@@ -1,0 +1,8 @@
+.wrapper {
+	@apply flex flex-col;
+}
+
+.list-wrapper {
+	@apply grid w-full gap-6;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}

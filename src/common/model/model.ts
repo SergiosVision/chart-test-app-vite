@@ -5,7 +5,8 @@ import {
 	ModelSchemaValidationError,
 	ModelValueValidationError
 } from '@common/exceptions/validation';
-import { KeyValue } from '@common/types/interfaces/common';
+
+// import { KeyValue } from '@common/types/interfaces/common';
 
 export class Model {
 	constructor(attributes: KeyValue) {

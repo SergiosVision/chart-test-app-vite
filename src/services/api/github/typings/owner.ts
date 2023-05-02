@@ -1,5 +1,3 @@
-import { StringOrNull } from '@common/types/interfaces/common';
-
 export type Owner = {
 	avatar_url: StringOrNull;
 	events_url: StringOrNull;

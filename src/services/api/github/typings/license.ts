@@ -1,5 +1,3 @@
-import { StringOrNull } from '@common/types/interfaces/common';
-
 export type License = {
 	key: string;
 	name: string;

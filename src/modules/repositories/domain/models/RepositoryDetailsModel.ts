@@ -1,7 +1,6 @@
 import { boolean, number, object, string } from 'yup';
 
 import { Model } from '@common/model/model';
-import { StringOrNull, ValueOrNull } from '@common/types/interfaces/common';
 
 import { LicenseModel } from './LicenseModel';
 import { OwnerModel } from './OwnerModel';

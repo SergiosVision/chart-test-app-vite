@@ -1,7 +1,6 @@
 import { boolean, object, string } from 'yup';
 
 import { Model } from '@common/model/model';
-import { NumberOrNull, StringOrNull } from '@common/types/interfaces/common';
 
 export class OwnerModel extends Model {
 	avatar_url: StringOrNull = null;

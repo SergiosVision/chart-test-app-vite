@@ -1,7 +1,6 @@
 import { object, string } from 'yup';
 
 import { Model } from '@common/model/model';
-import { StringOrNull } from '@common/types/interfaces/common';
 
 export class LicenseModel extends Model {
 	key: StringOrNull = null;

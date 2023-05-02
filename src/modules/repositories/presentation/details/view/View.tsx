@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import { ValueOrNull } from '@common/types/interfaces/common';
-
 import ErrorText from '@components/ui/typography/text/ErrorText';
 
 import { RepositoryDetailsModel } from '@modules/repositories/domain/models/RepositoryDetailsModel';

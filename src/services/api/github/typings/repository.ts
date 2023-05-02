@@ -1,5 +1,3 @@
-import { StringOrNull, ValueOrNull } from '@common/types/interfaces/common';
-
 import { License } from './license';
 import { Owner } from './owner';
 

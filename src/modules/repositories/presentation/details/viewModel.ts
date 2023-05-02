@@ -1,7 +1,5 @@
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
-import { ValueOrNull } from '@common/types/interfaces/common';
-
 import { RepositoryDetailsModel } from '../../domain/models/RepositoryDetailsModel';
 import { GetRepositoryDetailsCase } from '../../domain/usecases/getRepositoryDetails';
 

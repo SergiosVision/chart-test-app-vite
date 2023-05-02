@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import { formatBooleanToText } from '@common/formatters/boolean';
-import { ValueOrNull } from '@common/types/interfaces/common';
 
 import Section from '@components/ui/section/Section';
 import TitledText from '@components/ui/typography/text/TitledText';

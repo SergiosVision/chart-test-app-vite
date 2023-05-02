@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { StringOrNull } from '@common/types/interfaces/common';
-
 import BaseCard from '@components/ui/cards/baseCard/BaseCard';
 
 import styles from './styles/Card.module.scss';
